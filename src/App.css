@@ -1,0 +1,74 @@
+/* CSS Reset */
+* {
+    font-size: 100%;
+    font: inherit;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    list-style: none;
+}
+
+html {
+    background-color: #935d8c;
+    background-image: url("assets/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url("assets/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url("assets/overlay.png"), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url("assets/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+}
+
+.App-header {
+    width: 60%;
+    margin: 0 auto;
+    /* border: 1px solid brown; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: white;
+
+    margin: 50px auto;
+}
+
+header .logo {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    font-size: 2rem;
+}
+
+.view-container {
+    background-color: #ffffff;
+    color: #636363;
+    border-radius: 0.25em;
+
+    width: 90%;
+    margin: 0 auto;
+
+    max-width: 1400px;
+}
+
+nav {
+    background-color: #ffffff;
+    color: #636363;
+    position: absolute;
+    width: 64em;
+    max-width: calc(100% - 4em);
+    padding: 1em;
+    background-color: #f7f7f7;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    cursor: default;
+    text-align: center;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+}
