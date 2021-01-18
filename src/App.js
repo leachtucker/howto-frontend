@@ -1,6 +1,5 @@
 import logo from './assets/logo.svg';
 import './App.css';
-import 'bulma/css/bulma.min.css'
 
 import Nav from './Nav';
 import Post from './Post';

@@ -72,10 +72,6 @@
     padding: 0.3rem;
 }
 
-.post-right-container {
-    min-width: 75%;
-}
-
 .post-right-stepList li {
     margin: 1rem;
 }
@@ -110,6 +106,7 @@
     border: none;
     outline: none;
     background-color: #f7f7f7;
+    border-radius: 5rem;
 }
 
 .post-bottomBar-controls > button:hover  {
