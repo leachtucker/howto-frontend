@@ -1,0 +1,69 @@
+/* CSS Reset */
+* {
+    font-size: 100%;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-width: 100%;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+html {
+    background-color: #935d8c;
+    background-image: url("assets/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url("assets/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url("assets/overlay.png"), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+    background-image: url("assets/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+}
+
+body, a, button, p, span {
+    font-family: 'Roboto' !important;
+    font-weight: 300 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans' !important;
+    font-weight: 300 !important;
+    line-height: 1.65 !important;
+}
+
+.App-header {
+    width: 60%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: white;
+
+    margin: 50px auto;
+}
+
+header .logo {
+    max-width: 75%;
+    margin-bottom: 10px;
+}
+
+.header-title {
+    color: white !important;
+    font-size: 2.5rem;
+}
+
+.view-container {
+    background-color: #ffffff;
+    color: #636363 !important;
+    border-radius: 0.25em;
+
+    width: 90%;
+    margin: 0 auto;
+
+    max-width: 1400px;
+}
+
