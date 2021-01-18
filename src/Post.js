@@ -12,11 +12,18 @@ const PostContent = styled.div`
   padding: 2rem 0;
   flex-direction: row;
   justify-content: space-around;
+  @media only screen and ${breakpoint.device.md} {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const PostLeft = styled.div`
   width: 50%;
   text-align: center;
+  @media only screen and ${breakpoint.device.md} {
+    width: 85%;
+  }
 `
 
 const PostRight = styled.div`
@@ -25,6 +32,9 @@ const PostRight = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media only screen and ${breakpoint.device.md} {
+    width: 85%;
+  }
 `
 
 const PostTitle = styled.h3`
@@ -86,6 +96,9 @@ const PostControlGroup = styled.div`
   margin: 0 auto;
   padding: 1rem;
   border-radius: 0.5rem 0.5rem 0 0;
+  @media only screen and ${breakpoint.device.md} {
+    padding: 0.6rem;
+  }
 `
 
 const Button = styled.div`
@@ -104,12 +117,11 @@ const Button = styled.div`
 `
 
 const PostStatsGroup = styled.div`
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   background-color: #F7F7F7;
   padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: fit-content;
   border-top-left-radius: 0.5rem;
   font-size: 1.3rem;
   i {
@@ -164,21 +176,26 @@ function Post() {
               </PostRight>
             </PostContent>
             <PostBottomBar>
-              <div style={{ width: '80%', position: 'absolute', right: 0, bottom: 0, display: 'flex', justifyContent: 'space-between', alignContent: 'center', maxHeight: '100%' }}>
-                <PostControlGroup>
-                  <Button>
-                    <i class="fas fa-heart"></i>
-                  </Button>
-                  <Button>
-                    <i class="fas fa-heart-broken"></i>
-                  </Button>
-                  <Button>
-                    <i class="fas fa-share"></i>
-                  </Button>
-                </PostControlGroup>
-                <PostStatsGroup>
-                    <span><i class="fas fa-heart"></i>6,000</span>
-                </PostStatsGroup>
+              <div style={{ width: '100%', position: 'absolute', right: 0, bottom: 0, display: 'flex', justifyContent: 'space-between', alignContent: 'center', maxHeight: '100%' }}>
+                <div style={{ width: '33%' }}></div>
+                <div style={{ width: '33%', textAlign: 'center' }}>
+                  <PostControlGroup>
+                    <Button>
+                      <i class="fas fa-heart"></i>
+                    </Button>
+                    <Button>
+                      <i class="fas fa-heart-broken"></i>
+                    </Button>
+                    <Button>
+                      <i class="fas fa-share"></i>
+                    </Button>
+                  </PostControlGroup>
+                </div>
+                <div style={{ width: '33%', display: 'flex', justifyContent: 'flex-end' }}>
+                  <PostStatsGroup>
+                      <span><i class="fas fa-heart"></i>6,000</span>
+                  </PostStatsGroup>
+                </div>
               </div>
             </PostBottomBar>
           </Wrapper>
