@@ -1,0 +1,40 @@
+nav {
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    color: #636363;
+    background-color: #F7F7F7;
+    padding: 16px 0;
+
+    border-bottom: 1px solid gray;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 470px;
+    color: #636363;
+    margin: 0 auto;
+}
+
+nav ul li {
+    width: 23%;
+}
+
+nav ul li a {
+    color: #636363;
+    padding: 0.8rem;
+    display: block;
+    border-radius: 8px;
+    text-align: center;
+}
+
+nav ul li a:hover {
+    background-color: rgba(222, 222, 222, 0.25);
+}
+
+/* Fix this for react */
+nav ul li a.active {
+    background-color: #ffffff;
+    box-shadow: none;
+}
