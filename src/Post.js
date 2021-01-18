@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import breakpoint from './commons/breakpoints';
+
 const Wrapper = styled.div`
   border-bottom: 1px solid gray;
 `
@@ -70,10 +72,16 @@ const PostRightStepList = styled.div`
 `
 
 const PostBottomBar = styled.div`
+  position: relative;
+  width: 100%;
+  height: 68px;
+  margin-top: 15px;
+`
+
+const PostControlGroup = styled.div`
   background-color: #F7F7F7;
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
-  width: 30%;
   max-width: 300px;
   margin: 0 auto;
   padding: 1rem;
@@ -92,6 +100,22 @@ const Button = styled.div`
     background-color: white;
     cursor: pointer;
     color: black;
+  }
+`
+
+const PostStatsGroup = styled.div`
+  display: inline-block;
+  background-color: #F7F7F7;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 0.5rem;
+  font-size: 1.3rem;
+  i {
+    color: #95528F;
+    margin-right: 0.4rem;
+    font-size: 1.3rem;
   }
 `
 
@@ -139,17 +163,24 @@ function Post() {
                 </PostDetails>
               </PostRight>
             </PostContent>
-              <PostBottomBar>
-                <Button>
-                  <i class="fas fa-heart"></i>
-                </Button>
-                <Button>
-                  <i class="fas fa-heart-broken"></i>
-                </Button>
-                <Button>
-                  <i class="fas fa-share"></i>
-                </Button>
-              </PostBottomBar>
+            <PostBottomBar>
+              <div style={{ width: '80%', position: 'absolute', right: 0, bottom: 0, display: 'flex', justifyContent: 'space-between', alignContent: 'center', maxHeight: '100%' }}>
+                <PostControlGroup>
+                  <Button>
+                    <i class="fas fa-heart"></i>
+                  </Button>
+                  <Button>
+                    <i class="fas fa-heart-broken"></i>
+                  </Button>
+                  <Button>
+                    <i class="fas fa-share"></i>
+                  </Button>
+                </PostControlGroup>
+                <PostStatsGroup>
+                    <span><i class="fas fa-heart"></i>6,000</span>
+                </PostStatsGroup>
+              </div>
+            </PostBottomBar>
           </Wrapper>
     )
 }

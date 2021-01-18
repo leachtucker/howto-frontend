@@ -25,6 +25,7 @@ html {
 body, a, button, p, span {
     font-family: 'Roboto' !important;
     font-weight: 300 !important;
+    font-size: 1.1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -66,4 +67,3 @@ header .logo {
 
     max-width: 1400px;
 }
-
