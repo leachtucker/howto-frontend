@@ -2,9 +2,7 @@ import logo from './assets/logo.svg';
 import './App.css';
 
 import Nav from './Nav';
-import Post from './Post';
-
-
+import PostList from './PostList';
 
 function App() {
   return (
@@ -15,11 +13,7 @@ function App() {
       </header>
       <div className="view-container">
         <Nav />
-        <div className="post-list">
-          <Post />
-          <Post />
-          <Post />
-        </div>
+        <PostList posts={['s', 's']}/>
       </div>
     </div>
   );

@@ -99,6 +99,9 @@ const PostControlGroup = styled.div`
   @media only screen and ${breakpoint.device.md} {
     padding: 0.6rem;
   }
+  @media only screen and ${breakpoint.device.sm} {
+    padding: 0.6rem .3rem;
+  }
 `
 
 const Button = styled.div`
@@ -131,7 +134,7 @@ const PostStatsGroup = styled.div`
   }
 `
 
-function Post() {
+function Post(props) {
     return (
         <Wrapper>
             <PostContent>
