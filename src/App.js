@@ -3,6 +3,9 @@ import './App.css';
 
 import Nav from './Nav';
 import PostList from './PostList';
+import PostForm from './PostForm';
+
+import dummyData from './dummy_data/index';
 
 function App() {
   return (
@@ -13,7 +16,8 @@ function App() {
       </header>
       <div className="view-container">
         <Nav />
-        <PostList posts={['s', 's']}/>
+        {/* <PostList posts={dummyData.posts}/> */}
+        <PostForm />
       </div>
     </div>
   );

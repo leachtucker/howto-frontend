@@ -7,7 +7,7 @@ function PostList(props) {
         <div className="postList">
             {props.posts &&
                 props.posts.map(post => {
-                    return <Post />
+                    return <Post post={post} />
                 })
             }
         </div>

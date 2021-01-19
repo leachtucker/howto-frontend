@@ -127,21 +127,23 @@ const PostStatsGroup = styled.div`
   max-width: fit-content;
   border-top-left-radius: 0.5rem;
   font-size: 1.3rem;
+  font-weight: 400;
   i {
     color: #95528F;
-    margin-right: 0.4rem;
+    margin-right: 0.5rem;
     font-size: 1.3rem;
   }
 `
 
 function Post(props) {
+  console.log(props);
     return (
         <Wrapper>
             <PostContent>
               <PostLeft>
-                <PostTitle>How To Tie Your Shoes</PostTitle>
+                <PostTitle>{props.post.title}</PostTitle>
                 <Break style={{ margin: '0 auto', marginTop: '10px', marginBottom: '25px' }} />
-                <p style={{ width: '300px', margin: '0 auto' }}>Tying shoes can be difficult. Get some pro tips from a shoe-tying expert.</p>
+                <p style={{ width: '300px', margin: '0 auto' }}>{props.post.description}</p>
                 <PostDetails>
                   <h4>
                     Materials needed:
@@ -149,9 +151,11 @@ function Post(props) {
                   <Break style={{ marginTop:'5px' }}/>
                   <PostMatieralList>
                     <ul>
-                      <li>Shoes</li>
-                      <li>Intense Focus</li>
-                      <li>Agile Fingers</li>
+                      {props.post.materials &&
+                        props.post.materials.map(material => {
+                          return <li>{material}</li>
+                        })
+                      }
                     </ul>
                   </PostMatieralList>
                 </PostDetails>
@@ -164,10 +168,11 @@ function Post(props) {
                   <Break />
                   <PostRightStepList>
                     <ol>
-                      <li>1. Take one lace</li>
-                      <li>2. Pass it around</li>
-                      <li>3. Do the loopy-loop</li>
-                      <li>4. Pull it tight</li>
+                      {props.post.steps &&
+                        props.post.steps.map(step => {
+                          return <li>{step.stepNumber}. {step.name}</li>
+                        })
+                      }
                     </ol>
                   </PostRightStepList>
                   <div style={{ textAlign: 'center' }}>
@@ -196,7 +201,7 @@ function Post(props) {
                 </div>
                 <div style={{ width: '33%', display: 'flex', justifyContent: 'flex-end' }}>
                   <PostStatsGroup>
-                      <span><i class="fas fa-heart"></i>6,000</span>
+                      <span><i class="fas fa-heart"></i>6000</span>
                   </PostStatsGroup>
                 </div>
               </div>
