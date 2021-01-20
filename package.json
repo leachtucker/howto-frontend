@@ -3,18 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^1.1.5",
     "@codolog/form": "^1.0.0",
-    "@craco/craco": "^6.0.0",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
-    "chalk": "^4.1.0",
-    "postcss": "^7.0.35",
+    "framer-motion": "^3.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -41,11 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "autoprefixer": "^9.8.6",
-    "babel-plugin-macros": "^3.0.1",
-    "postcss-cli": "^8.3.1",
-    "tailwind-styled-components": "^1.0.7",
-    "twin.macro": "^2.0.8"
-  }
+  "devDependencies": {}
 }
