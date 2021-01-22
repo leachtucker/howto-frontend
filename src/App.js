@@ -24,7 +24,7 @@ function App(props) {
           <Heading as="h1" size="3xl" color="white" >HowTo</Heading>
         </Stack>
       </Center>
-      <Box bgColor="white" width="90%" margin="0 auto" borderRadius="7px" paddingBottom="10px">
+      <Box bgColor="white" width="90%" maxWidth="1400px" margin="0 auto" borderRadius="7px" paddingBottom="10px">
         <Nav />
         <Feed />
       </Box>

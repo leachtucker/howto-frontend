@@ -7,7 +7,7 @@ function PostList(props) {
         <>
             {props.posts &&
                 props.posts.map(post => {
-                    return <Post post={post} />
+                    return <Post key={post.id} post={post} />
                 })
             }
         </>
