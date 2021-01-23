@@ -16,9 +16,9 @@ function Feed(props) {
     return (
         <Box paddingY="8px">
             <Center marginBottom="8px">
-                <Heading as="h2" size="xl" color="gray.700">Posts</Heading>
+                <Heading as="h2" fontSize="2.5rem" fontWeight="300">Posts</Heading>
             </Center>
-            <Stack>
+            <Stack borderBottom="1px solid gainsboro">
                 <PostList posts={dummyData.posts} />
             </Stack>
         </Box>

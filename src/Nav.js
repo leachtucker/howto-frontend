@@ -8,17 +8,17 @@ import {
 
 import LinkButton from './LinkButton';
 
-function Nav() {
+function Nav(props) {
     return (
-        <Box borderTopRadius="7px" bgColor="#F7F7F7">
+        <Box borderTopRadius="7px" bgColor="#F7F7F7" borderBottom="1px solid gainsboro">
             <Flex margin="0 auto" width="70%" maxWidth="500px" paddingY="10px" shrink>
-                <LinkButton minWidth="20%" >Feed</LinkButton>
+                <LinkButton minWidth="20%" fontSize="1.25rem" >Feed</LinkButton>
                 <Spacer />
-                <LinkButton minWidth="20%">New Post</LinkButton>
+                <LinkButton minWidth="20%" fontSize="1.25rem">New Post</LinkButton>
                 <Spacer />
-                <LinkButton minWidth="20%">Settings</LinkButton>
+                <LinkButton minWidth="20%" fontSize="1.25rem">Settings</LinkButton>
                 <Spacer />
-                <LinkButton minWidth="20%">Logout</LinkButton>
+                <LinkButton minWidth="20%" fontSize="1.25rem">Logout</LinkButton>
             </Flex>
         </Box>
     )

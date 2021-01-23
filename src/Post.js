@@ -6,60 +6,87 @@ import {
     Heading,
     Text,
     List,
-    ListItem
+    ListItem,
+    IconButton,
+    Center,
+    Spacer
 } from '@chakra-ui/react';
+
+import {
+    FaHeart,
+    FaHeartBroken,
+    FaShare
+} from 'react-icons/fa';
+
 
 function Post(props) {
     console.log(props);
     return (
-        <Flex flexDirection={{ base: "column", md: "row" }} alignItems={{ base: "center" }}  minHeight="350px" borderTop="1px solid gainsboro" borderBottom="1px solid gainsboro" paddingY="10px">
-            <Box height="100%" display="inline-block">
-                <Flex flexDirection="column" alignItems="center" height="100%">
-                    <Heading as="h3" size="xl" marginBottom="8px" textAlign="center">How To Tie Your Shoes</Heading>
-                    <Box maxWidth="325px" textAlign="center" marginBottom="25px">
-                        <Text>Tying your shoes can be hard sometimes. Get tips from an expert!</Text>
-                    </Box>
-                    <Box width="90%" maxWidth="350px" bgColor="#F7F7F7" borderTopLeftRadius="1rem" borderBottomRightRadius="1rem" padding="2rem">
-                        <Heading as="h4" size="lg" >Materials Needed:</Heading>
-                        <Box className="break" height="3px" maxWidth="100px" marginTop="8px"></Box>
-                        <List textAlign="center" spacing="5px" marginTop="15px">
-                            <ListItem>
-                                <Text fontSize="lg">1. Shoes</Text>
-                            </ListItem>
-                            <ListItem>
-                                <Text fontSize="lg">2. Agile Fingers</Text>
-                            </ListItem>
-                            <ListItem>
-                                <Text fontSize="lg">3. Discipline</Text>
-                            </ListItem>
-                        </List>
-                    </Box>
+        <Box>
+            <Flex flexDirection={{ base: "column", md: "row" }} alignItems={{ base: "center", md: "" }} minHeight="350px" borderTop="1px solid gainsboro" paddingTop="15px">
+                <Box width={{ base: "100%", md: "50%"}} marginBottom={{ base: "20px", md: "" }} display="inline-block">
+                    <Flex flexDirection="column" alignItems="center">
+                        <Heading as="h3" size="xl" fontWeight="300" marginBottom="12px" textAlign="center">{props.post.title}</Heading>
+                        <Box maxWidth="325px" textAlign="center" marginBottom="25px">
+                            <Text>{props.post.description}</Text>
+                        </Box>
+                        <Box width="90%" maxWidth="425px" bgColor="#F7F7F7" borderTopLeftRadius="1rem" borderBottomRightRadius="1rem" padding="2rem">
+                            <Heading as="h4" size="lg" fontWeight="300" >Materials Needed:</Heading>
+                            <Box className="break" height="2px" maxWidth="100px" marginTop="8px"></Box>
+                            <List textAlign="center" spacing="5px" marginTop="15px">
+                                {props.post.materials &&
+                                    props.post.materials.map(material => {
+                                        const matNumber = props.post.materials.indexOf(material) + 1;
+                                        return (
+                                            <ListItem>
+                                                <Text fontSize="lg">{matNumber}. {material}</Text>
+                                            </ListItem>
+                                        )
+                                    })
+                                }
+                            </List>
+                        </Box>
+                    </Flex>
+                </Box>
+                <Box width={{ base: "100%", md: "50%"}} display="inline-block">
+                    <Flex flexDirection="column" alignItems="center" justifyContent="center">
+                        <Box width="90%" maxWidth="500px" bgColor="#F7F7F7" borderTopLeftRadius="1rem" borderBottomRightRadius="1rem" padding="1.5rem">
+                            <Heading as="h4" size="lg" fontWeight="300" >Instructions:</Heading>
+                            <Box className="break" height="2px" maxWidth="100px" marginTop="8px"></Box>
+                            <List textAlign="center" spacing="15px" marginTop="15px">
+                                {props.post.steps &&
+                                    props.post.steps.map(step => {
+                                        return (
+                                            <ListItem>
+                                                <Text fontSize="lg">{step.stepNumber}. {step.name}</Text>
+                                            </ListItem>
+                                        )
+                                    })
+                                }
+                            </List>
+                        </Box>
+                    </Flex>
+                </Box>
+            </Flex>
+            <Center padding>
+                <Flex width="60%" maxWidth="225px" justifyContent="space-between" padding="1rem 2rem" borderTopRadius="0.6rem" bgColor="#F7F7F7">
+                    <IconButton
+                        icon={<FaHeart />}
+
+                    />
+                    <Spacer />
+                    <IconButton
+                        icon={<FaHeartBroken />}
+
+                    />
+                    <Spacer />
+                    <IconButton
+                        icon={<FaShare />}
+
+                    />
                 </Flex>
-            </Box>
-            <Box height="100%" display="inline-block">
-                <Flex flexDirection="column" alignItems="center" height="100%">
-                    <Heading as="h3" size="xl" marginBottom="8px" textAlign="center">How To Tie Your Shoes</Heading>
-                    <Box maxWidth="325px" textAlign="center" marginBottom="25px">
-                        <Text>Tying your shoes can be hard sometimes. Get tips from an expert!</Text>
-                    </Box>
-                    <Box width="90%" maxWidth="350px" bgColor="#F7F7F7" borderTopLeftRadius="1rem" borderBottomRightRadius="1rem" padding="2rem">
-                        <Heading as="h4" size="lg" >Materials Needed:</Heading>
-                        <Box className="break" height="3px" maxWidth="100px" marginTop="8px"></Box>
-                        <List textAlign="center" spacing="5px" marginTop="15px">
-                            <ListItem>
-                                <Text fontSize="lg">1. Shoes</Text>
-                            </ListItem>
-                            <ListItem>
-                                <Text fontSize="lg">2. Agile Fingers</Text>
-                            </ListItem>
-                            <ListItem>
-                                <Text fontSize="lg">3. Discipline</Text>
-                            </ListItem>
-                        </List>
-                    </Box>
-                </Flex>
-            </Box>
-        </Flex>
+            </Center>
+        </Box>
     )
 }
 
