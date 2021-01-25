@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+import MyIconButton from './MyIconButton';
 
 import {
     Box,
@@ -7,7 +9,6 @@ import {
     Text,
     List,
     ListItem,
-    IconButton,
     Center,
     Spacer
 } from '@chakra-ui/react';
@@ -69,20 +70,17 @@ function Post(props) {
                 </Box>
             </Flex>
             <Center marginTop="25px" padding="0">
-                <Flex width="60%" maxWidth="225px" justifyContent="space-between" padding="1rem 2rem" borderTopRadius="0.6rem" bgColor="#F7F7F7">
-                    <IconButton
+                <Flex width="60%" maxWidth="250px" justifyContent="space-between" padding="1rem 2rem" borderTopRadius="0.6rem" bgColor="#F7F7F7">
+                    <MyIconButton
                         icon={<FaHeart />}
-
                     />
                     <Spacer />
-                    <IconButton
+                    <MyIconButton
                         icon={<FaHeartBroken />}
-
                     />
                     <Spacer />
-                    <IconButton
+                    <MyIconButton
                         icon={<FaShare />}
-
                     />
                 </Flex>
             </Center>
