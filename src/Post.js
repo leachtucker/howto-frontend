@@ -69,7 +69,7 @@ function Post(props) {
                     </Flex>
                 </Box>
             </Flex>
-            <Center marginTop="25px" padding="0">
+            <Center marginTop="50px" padding="0">
                 <Flex width="60%" maxWidth="250px" justifyContent="space-between" padding="1rem 2rem" borderTopRadius="0.6rem" bgColor="#F7F7F7">
                     <MyIconButton
                         icon={<FaHeart />}
