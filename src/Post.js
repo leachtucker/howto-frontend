@@ -22,8 +22,8 @@ import {
 function Post(props) {
     console.log(props);
     return (
-        <Box>
-            <Flex flexDirection={{ base: "column", md: "row" }} alignItems={{ base: "center", md: "" }} minHeight="350px" borderTop="1px solid gainsboro" paddingTop="15px">
+        <Box borderTop="1px solid gainsboro">
+            <Flex flexDirection={{ base: "column", md: "row" }} alignItems={{ base: "center", md: "" }} minHeight="350px" paddingTop="15px">
                 <Box width={{ base: "100%", md: "50%"}} marginBottom={{ base: "20px", md: "" }} display="inline-block">
                     <Flex flexDirection="column" alignItems="center">
                         <Heading as="h3" size="xl" fontWeight="300" marginBottom="12px" textAlign="center">{props.post.title}</Heading>
@@ -68,7 +68,7 @@ function Post(props) {
                     </Flex>
                 </Box>
             </Flex>
-            <Center padding>
+            <Center marginTop="25px" padding="0">
                 <Flex width="60%" maxWidth="225px" justifyContent="space-between" padding="1rem 2rem" borderTopRadius="0.6rem" bgColor="#F7F7F7">
                     <IconButton
                         icon={<FaHeart />}
