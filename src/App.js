@@ -19,7 +19,7 @@ import NewPost from './NewPost';
 function App(props) {
   return (
     <div className="App">
-      <Center w="fit-content" height="250px" margin="0 auto">
+      <Center w="fit-content" height="250px" margin="0 auto" marginBottom="30px">
         <Stack>
           <Image src={logo} alt="Logo"/>
           <Spacer />

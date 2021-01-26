@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import * as yup from 'yup';
 
 import {
     Box,
+    Stack,
     Center,
     Input,
     FormControl,
@@ -29,15 +32,17 @@ function PostForm() {
     // SLICES OF STATE //
     const [ formValues, setFormValues ] = useState(initialFormValues);
     const [ formErrors, setFormErrors ] = useState(initialFormErrors);
+    const [ isButtonDisabled, setIsButtonDisabled ] = useState(true);
 
     // EVENT HANDLERS //
     function onChange(e) {
-        // VALIDATE
-        validate();
+        const { name, value } = e.target;
         setFormValues({
             ...formValues,
-            [e.target.name]: e.target.value
+            [name]: value
         });
+
+        validate(name, value);
     }
 
     function onSubmit(e) {
@@ -46,19 +51,35 @@ function PostForm() {
 
     }
 
-    function validate() {
-        schema.validate(formValues).catch((err) => {
-            console.log({...err})
-            setFormErrors({
-                ...formErrors,
-                [err.path]: err.message
-            })
-        })
+    // HELPERS //
+    function validate(name, value) {
+        yup.reach(schema, name)
+            .validate(value)
+                .then(() => {
+                    setFormErrors({
+                        ...formErrors,
+                        [name]: ""
+                    })
+                })
+                .catch(err => {
+                    setFormErrors({
+                        ...formErrors,
+                        [name]: err.errors[0]
+                    })
+                })
     }
+
+    // SIDE EFFECTS //
+    useEffect(() => {
+        schema.isValid(formValues)
+            .then(valid => {
+                setIsButtonDisabled(!valid);
+            })
+    }, [ formValues ])
 
     return (
         <form onSubmit={onSubmit}>
-            <Box width="40%" minWidth="300px" margin="0 auto">
+            <Stack spacing="12px" width="70%" minWidth="320px" margin="0 auto" border="1px solid gainsboro" borderRadius="8px" padding="1rem" marginBottom="20px">
                 <FormControl isRequired isInvalid={formErrors.title.length > 0 ? true : false}>
                     <FormLabel htmlFor="title">Title</FormLabel>
                     <Input name="title" value={formValues.title} onChange={onChange} id="title" placeholder="Title" />
@@ -79,16 +100,17 @@ function PostForm() {
                     <Input name="videoURL" value={formValues.videoURL} onChange={onChange} id="videoURL" placeholder="URL" />
                     <FormErrorMessage>{formErrors.videoURL}</FormErrorMessage>
                 </FormControl>
-                <Center paddingY="25px">
+                <Center>
                     <LinkButton
                         border="1px solid gainsboro"
                         fontSize="1.2rem"
                         type="submit"
+                        isDisabled={isButtonDisabled}
                     >
                         Submit
                     </LinkButton>
                 </Center>
-            </Box>
+            </Stack>
         </form>
     )
 }
