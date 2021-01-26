@@ -13,6 +13,7 @@ import {
 
 import Nav from './Nav';
 import Feed from './Feed';
+import NewPost from './NewPost';
 
 
 function App(props) {
@@ -27,7 +28,8 @@ function App(props) {
       </Center>
       <Box color="text.400" bgColor="white" boxShadow="lg" width="90%" maxWidth="1350px" margin="0 auto" borderRadius="7px !important" paddingBottom="10px">
         <Nav />
-        <Feed />
+        <NewPost />
+        {/* <Feed /> */}
       </Box>
       <Center color="white" height="100px">
           <Text marginTop="10px">© HowTo</Text>
