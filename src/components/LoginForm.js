@@ -50,7 +50,7 @@ function LoginForm() {
                         type="submit"
                         isDisabled={isButtonDisabled}
                     >
-                        Register
+                        Login
                     </LinkButton>
                 </Center>
             </Stack>
