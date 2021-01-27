@@ -11,10 +11,13 @@ import {
   Text
 } from '@chakra-ui/react';
 
-import Nav from './Nav';
-import Feed from './Feed';
-import NewPost from './NewPost';
+import Nav from './components/Nav';
+import Feed from './pages/Feed';
+import NewPost from './pages/NewPost';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 
+import fetchTokenLocal from './utils/fetchTokenLocal';
 
 function App(props) {
   return (
@@ -27,9 +30,14 @@ function App(props) {
         </Stack>
       </Center>
       <Box color="text.400" bgColor="white" boxShadow="lg" width="90%" maxWidth="1350px" margin="0 auto" borderRadius="7px !important" paddingBottom="10px">
-        <Nav />
-        <NewPost />
+        {fetchTokenLocal() &&
+          <Nav />
+        }
         {/* <Feed /> */}
+        {/* <NewPost /> */}
+        <Login />
+        {/* <Signup /> */}
+        {/* <NewPost /> */}
       </Box>
       <Center color="white" height="100px">
           <Text marginTop="10px">© HowTo</Text>

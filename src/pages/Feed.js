@@ -7,9 +7,9 @@ import {
     Heading
 } from '@chakra-ui/react';
 
-import PostList from './PostList';
+import PostList from '../components/PostList';
 
-import dummyData from './dummy_data/index';
+import dummyData from '../dummy_data/index';
 
 
 function Feed(props) {

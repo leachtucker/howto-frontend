@@ -6,7 +6,7 @@ import {
     Heading
 } from '@chakra-ui/react';
 
-import PostForm from './PostForm';
+import PostForm from '../components/PostForm';
 
 function NewPost() {
     return (

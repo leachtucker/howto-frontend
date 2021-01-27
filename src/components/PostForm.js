@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
-
-import * as yup from 'yup';
+import React from 'react';
 
 import {
-    Box,
     Stack,
     Center,
     Input,
@@ -15,7 +12,8 @@ import {
 
 import LinkButton from './LinkButton';
 
-import schema from './formSchema';
+import useForm from '../hooks/useForm';
+import schema from '../validation/postSchema';
 
 const initialFormValues = {
     title: "",
@@ -24,58 +22,16 @@ const initialFormValues = {
     videoURL: ""
 }
 
-const initialFormErrors = {
-    ...initialFormValues
-}
-
 function PostForm() {
-    // SLICES OF STATE //
-    const [ formValues, setFormValues ] = useState(initialFormValues);
-    const [ formErrors, setFormErrors ] = useState(initialFormErrors);
-    const [ isButtonDisabled, setIsButtonDisabled ] = useState(true);
+    // HOOKS & STATE //
+    const [ formValues, formErrors, isButtonDisabled, onChange ] = useForm(initialFormValues, schema);
 
     // EVENT HANDLERS //
-    function onChange(e) {
-        const { name, value } = e.target;
-        setFormValues({
-            ...formValues,
-            [name]: value
-        });
-
-        validate(name, value);
-    }
-
     function onSubmit(e) {
         e.preventDefault();
         // CALL API to submit data
 
     }
-
-    // HELPERS //
-    function validate(name, value) {
-        yup.reach(schema, name)
-            .validate(value)
-                .then(() => {
-                    setFormErrors({
-                        ...formErrors,
-                        [name]: ""
-                    })
-                })
-                .catch(err => {
-                    setFormErrors({
-                        ...formErrors,
-                        [name]: err.errors[0]
-                    })
-                })
-    }
-
-    // SIDE EFFECTS //
-    useEffect(() => {
-        schema.isValid(formValues)
-            .then(valid => {
-                setIsButtonDisabled(!valid);
-            })
-    }, [ formValues ])
 
     return (
         <form onSubmit={onSubmit}>
@@ -100,7 +56,7 @@ function PostForm() {
                     <Input name="videoURL" value={formValues.videoURL} onChange={onChange} id="videoURL" placeholder="URL" />
                     <FormErrorMessage>{formErrors.videoURL}</FormErrorMessage>
                 </FormControl>
-                <Center>
+                <Center paddingY="15px">
                     <LinkButton
                         border="1px solid gainsboro"
                         fontSize="1.2rem"
