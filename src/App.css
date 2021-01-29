@@ -2,6 +2,8 @@ html {
     margin: 0 !important;
     padding: 0 !important;
 
+    min-height: 100vh;
+
     background-color: #935d8c;
     background-image: url("assets/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
     background-image: url("assets/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);

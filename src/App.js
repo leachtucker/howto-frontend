@@ -1,3 +1,5 @@
+import { Route, Switch } from 'react-router-dom';
+
 import logo from './assets/logo.svg';
 import './App.css';
 
@@ -11,11 +13,14 @@ import {
 } from '@chakra-ui/react';
 
 import Nav from './components/Nav';
+
+// PAGES //
 import Feed from './pages/Feed';
 import NewPost from './pages/NewPost';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 
+// UTILS //
 import fetchTokenLocal from './utils/fetchTokenLocal';
 
 function App(props) {
@@ -31,15 +36,28 @@ function App(props) {
         {fetchTokenLocal() &&
           <Nav />
         }
-        <Login />
-        {/* <Feed /> */}
-        {/* <NewPost /> */}
-        {/* <Signup /> */}
-        {/* <NewPost /> */}
+        <Switch>
+          <Route path="/register" exact>
+            <Signup />
+          </Route>
+          <Route path="/login" exact>
+            <Login />
+          </Route>
+          <Route path="/feed" exact>
+            <Feed />
+          </Route>
+          <Route path="/newpost" exact>
+            <NewPost />
+          </Route>
+
+          {/* Add Settings page & (maybe) a edit post page */}
+        </Switch>
       </Box>
-      <Center color="white" height="100px">
+      {fetchTokenLocal() &&
+        <Center color="white" height="100px">
           <Text marginTop="10px">© HowTo</Text>
-      </Center>
+        </Center>
+      }
     </div>
   );
 }
