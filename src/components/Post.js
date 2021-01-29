@@ -39,7 +39,7 @@ function Post(props) {
                                     props.post.materials.map(material => {
                                         const matNumber = props.post.materials.indexOf(material) + 1;
                                         return (
-                                            <ListItem>
+                                            <ListItem key={matNumber}>
                                                 <Text fontSize="lg">{matNumber}. {material}</Text>
                                             </ListItem>
                                         )

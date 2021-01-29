@@ -1,4 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 
 import logo from './assets/logo.svg';
 import './App.css';
@@ -15,10 +16,11 @@ import {
 import Nav from './components/Nav';
 
 // PAGES //
-import Feed from './pages/Feed';
-import NewPost from './pages/NewPost';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Feed from './pages/Feed';
+import NewPost from './pages/NewPost';
+import Settings from './pages/Settings';
 
 // UTILS //
 import fetchTokenLocal from './utils/fetchTokenLocal';
@@ -37,19 +39,11 @@ function App(props) {
           <Nav />
         }
         <Switch>
-          <Route path="/register" exact>
-            <Signup />
-          </Route>
-          <Route path="/login" exact>
-            <Login />
-          </Route>
-          <Route path="/feed" exact>
-            <Feed />
-          </Route>
-          <Route path="/newpost" exact>
-            <NewPost />
-          </Route>
-
+          <Route path="/register" exact component={Signup} />
+          <Route path="/" exact component={Login} />
+          <PrivateRoute path="/feed" exact component={Feed} />
+          <PrivateRoute path="/newpost" exact component={NewPost} />
+          <PrivateRoute path="/settings" exact component={Settings} />
           {/* Add Settings page & (maybe) a edit post page */}
         </Switch>
       </Box>

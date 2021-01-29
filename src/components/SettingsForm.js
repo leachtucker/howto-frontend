@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
     Stack,
@@ -20,7 +20,7 @@ const initialFormValues = {
     password: ""
 };
 
-function SignupForm(props) {
+function SettingsForm() {
     // HOOKS & STATE //
     const [ formValues, formErrors, isButtonDisabled, onChange ] = useForm(initialFormValues, schema);
 
@@ -30,6 +30,11 @@ function SignupForm(props) {
         // CALL API to submit data
 
     }
+
+    // Runs on component mount
+    useEffect(() => {
+        // Make call to API to fetch user data and then set that data to the form state
+    }, []);
 
     return (
         <form onSubmit={onSubmit}>
@@ -56,7 +61,7 @@ function SignupForm(props) {
                         type="submit"
                         isDisabled={isButtonDisabled}
                     >
-                        Register
+                        Update
                     </LinkButton>
                 </Center>
             </Stack>
@@ -64,4 +69,4 @@ function SignupForm(props) {
     )
 }
 
-export default SignupForm;
+export default SettingsForm;

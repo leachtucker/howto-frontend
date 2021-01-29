@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import * as yup from 'yup';
 
 function useForm(initialValues, schema = null) {
-    const [ formValues, setFormValues ] = useState(initialValues);
-    const [ formErrors, setFormErrors ] = useState(initialValues);
-    const [ isButtonDisabled, setIsButtonDisabled ] = useState(true);
+    const [ formValues, setFormValues ] = useState(() => initialValues);
+    const [ formErrors, setFormErrors ] = useState(() => initialValues);
+    const [ isButtonDisabled, setIsButtonDisabled ] = useState(() => true);
 
     // EVENT HANDLERS //
     function onChange(e) {
