@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import {
     Stack,
@@ -14,6 +15,9 @@ import LinkButton from './LinkButton';
 import useForm from '../hooks/useForm';
 import schema from '../validation/signupSchema';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../store/user';
+
 const initialFormValues = {
     username: "",
     password: ""
@@ -22,12 +26,16 @@ const initialFormValues = {
 function LoginForm() {
     // HOOKS & STATE //
     const [ formValues, formErrors, isButtonDisabled, onChange ] = useForm(initialFormValues, schema);
+    const dispatch = useDispatch();
+    const { error } = useSelector(state => state.user);
+    const { push } = useHistory();
 
     // EVENT HANDLERS
     function onSubmit(e) {
         e.preventDefault();
         // CALL API to submit data
-
+        const { username, password } = formValues;
+        dispatch(login({username, password}, push));
     }
 
     return (
@@ -40,8 +48,11 @@ function LoginForm() {
                 </FormControl>
                 <FormControl isRequired isInvalid={formErrors.password.length > 0 ? true : false}>
                     <FormLabel htmlFor="password">Password</FormLabel>
-                    <Input name="password" value={formValues.password} onChange={onChange} id="password" placeholder="Password" />
+                    <Input name="password" type="password" value={formValues.password} onChange={onChange} id="password" placeholder="Password" />
                     <FormErrorMessage>{formErrors.password}</FormErrorMessage>
+                </FormControl>
+                <FormControl textAlign="center" borderTop="1px solid gainsboro" isInvalid={error ? true : false}>
+                    <FormErrorMessage display="inline-block">{error}</FormErrorMessage>
                 </FormControl>
                 <Center paddingY="15px">
                     <LinkButton

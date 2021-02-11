@@ -9,19 +9,25 @@ import {
 
 import LinkButton from './LinkButton';
 
-function Nav(props) {
-    const history = useHistory();
+import { useDispatch } from 'react-redux';
+import { logout } from '../store/user';
 
+function Nav(props) {
+    // HOOKS & STATE
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    // EVENT HANDLERS
     function onLogout() {
-        deleteTokenLocal();
-        history.go('/login');
+        dispatch(logout());
+        history.push('/login');
     }
 
     return (
         <Box borderTopRadius="7px" bgColor="#F7F7F7" borderBottom="1px solid gainsboro">
             <Flex margin="0 auto" width="95%" maxWidth="500px" paddingY="10px" justifyContent="space-evenly">
                 <LinkButton flex="1" maxWidth="100px" fontSize="1.25rem">
-                    <Link to="/feed">
+                    <Link to="/">
                         Feed
                     </Link>
                 </LinkButton>

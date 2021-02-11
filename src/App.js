@@ -1,8 +1,11 @@
+import logo from './assets/logo.svg';
+import './App.css';
+
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
-import logo from './assets/logo.svg';
-import './App.css';
+// RTK
+import {useDispatch, useSelector} from 'react-redux';
 
 import {
   Box,
@@ -14,6 +17,8 @@ import {
 } from '@chakra-ui/react';
 
 import Nav from './components/Nav';
+import LoadingModal from './components/LoadingModal';
+
 
 // PAGES //
 import Signup from './pages/Signup';
@@ -26,6 +31,8 @@ import Settings from './pages/Settings';
 import fetchTokenLocal from './utils/fetchTokenLocal';
 
 function App(props) {
+  const { fetching } = useSelector(state => state.user);
+
   return (
     <div className="App">
       <Center w="fit-content" height="250px" margin="0 auto" marginBottom="30px">
@@ -38,20 +45,21 @@ function App(props) {
         {fetchTokenLocal() &&
           <Nav />
         }
+        {fetching &&
+          <LoadingModal />
+        }
         <Switch>
           <Route path="/register" exact component={Signup} />
-          <Route path="/" exact component={Login} />
-          <PrivateRoute path="/feed" exact component={Feed} />
+          <Route path="/login" exact component={Login} />
+          <PrivateRoute path="/" exact component={Feed} />
           <PrivateRoute path="/newpost" exact component={NewPost} />
           <PrivateRoute path="/settings" exact component={Settings} />
           {/* Add Settings page & (maybe) a edit post page */}
         </Switch>
       </Box>
-      {fetchTokenLocal() &&
-        <Center color="white" height="100px">
-          <Text marginTop="10px">© HowTo</Text>
-        </Center>
-      }
+      <Center color="white" height="100px">
+        <Text marginTop="10px">© HowTo</Text>
+      </Center>
     </div>
   );
 }
