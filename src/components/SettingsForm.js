@@ -42,17 +42,17 @@ function SettingsForm() {
                 <FormControl isRequired isInvalid={formErrors.email.length > 0 ? true : false}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input name="email" value={formValues.email} onChange={onChange} id="email" placeholder="Email" />
-                    <FormErrorMessage>{formErrors.email}</FormErrorMessage>
+                    <FormErrorMessage fontSize="md">{formErrors.email}</FormErrorMessage>
                 </FormControl>
                 <FormControl isRequired isInvalid={formErrors.username.length > 0 ? true : false}>
                     <FormLabel htmlFor="username">Username</FormLabel>
                     <Input name="username" value={formValues.username} onChange={onChange} id="username" placeholder="Username" />
-                    <FormErrorMessage>{formErrors.username}</FormErrorMessage>
+                    <FormErrorMessage fontSize="md">{formErrors.username}</FormErrorMessage>
                 </FormControl>
                 <FormControl isRequired isInvalid={formErrors.password.length > 0 ? true : false}>
                     <FormLabel htmlFor="password">Password</FormLabel>
                     <Input name="password" value={formValues.password} onChange={onChange} id="password" placeholder="Password" />
-                    <FormErrorMessage>{formErrors.password}</FormErrorMessage>
+                    <FormErrorMessage fontSize="md">{formErrors.password}</FormErrorMessage>
                 </FormControl>
                 <Center paddingY="15px">
                     <LinkButton

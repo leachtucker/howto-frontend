@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import deleteTokenLocal from '../utils/deleteTokenLocal';
 
 import {
     Box,
@@ -10,9 +9,9 @@ import {
 import LinkButton from './LinkButton';
 
 import { useDispatch } from 'react-redux';
-import { logout } from '../store/user';
+import { logout } from '../store/app';
 
-function Nav(props) {
+function Nav() {
     // HOOKS & STATE
     const history = useHistory();
     const dispatch = useDispatch();
@@ -21,6 +20,7 @@ function Nav(props) {
     function onLogout() {
         dispatch(logout());
         history.push('/login');
+        history.go();
     }
 
     return (

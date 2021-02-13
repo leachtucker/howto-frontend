@@ -1,11 +1,15 @@
 import logo from './assets/logo.svg';
 import './App.css';
 
+// ROUTER
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
 // RTK
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+
+// UTILS
+import fetchToken from './utils/fetchTokenLocal';
 
 import {
   Box,
@@ -19,7 +23,6 @@ import {
 import Nav from './components/Nav';
 import LoadingModal from './components/LoadingModal';
 
-
 // PAGES //
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -27,11 +30,9 @@ import Feed from './pages/Feed';
 import NewPost from './pages/NewPost';
 import Settings from './pages/Settings';
 
-// UTILS //
-import fetchTokenLocal from './utils/fetchTokenLocal';
 
-function App(props) {
-  const { fetching } = useSelector(state => state.user);
+function App() {
+  const { user, fetching } = useSelector(state => state.app);
 
   return (
     <div className="App">
@@ -42,7 +43,7 @@ function App(props) {
         </Flex>
       </Center>
       <Box color="text.400" bgColor="white" boxShadow="lg" width="90%" maxWidth="1350px" margin="0 auto" borderRadius="7px !important" paddingBottom="10px">
-        {fetchTokenLocal() &&
+        {fetchToken() &&
           <Nav />
         }
         {fetching &&
