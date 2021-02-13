@@ -35,7 +35,7 @@ function PostForm() {
 
     return (
         <form onSubmit={onSubmit}>
-            <Stack spacing="12px" width="70%" minWidth="320px" margin="0 auto" border="1px solid gainsboro" borderRadius="8px" padding="1rem" marginBottom="20px">
+            <Stack spacing="12px" width="70%" minWidth="320px" margin="0 auto" borderRadius="8px" padding="1rem" marginBottom="20px">
                 <FormControl isRequired isInvalid={formErrors.title.length > 0 ? true : false}>
                     <FormLabel htmlFor="title">Title</FormLabel>
                     <Input name="title" value={formValues.title} onChange={onChange} id="title" placeholder="Title" />

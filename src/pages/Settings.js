@@ -15,7 +15,7 @@ function Settings(props) {
             <Center padding="16px">
                 <Heading as="h2" fontSize="2.5rem" fontWeight="300">Settings</Heading>
             </Center>
-            <Stack borderBottom="1px solid gainsboro" spacing="0">
+            <Stack spacing="0">
                 <SettingsForm />
             </Stack>
         </Box>

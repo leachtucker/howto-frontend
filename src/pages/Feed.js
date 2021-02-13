@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { fetchPosts } from '../store/app';
+
+import PostList from '../components/PostList';
 import {
     Box,
     Center,
@@ -7,19 +11,22 @@ import {
     Heading
 } from '@chakra-ui/react';
 
-import PostList from '../components/PostList';
 
-import dummyData from '../dummy_data/index';
+function Feed() {
+    const { posts } = useSelector(state => state.app);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(fetchPosts());
+    }, [])
 
-function Feed(props) {
     return (
         <Box>
             <Center padding="16px">
                 <Heading as="h2" fontSize="2.5rem" fontWeight="300">Posts</Heading>
             </Center>
             <Stack borderBottom="1px solid gainsboro" spacing="0">
-                <PostList posts={dummyData.posts} />
+                <PostList posts={posts} />
             </Stack>
         </Box>
     )
