@@ -1,4 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
+// Redux actions
+import { sendLike } from '../store/app';
 
 import MyIconButton from './MyIconButton';
 
@@ -21,6 +25,8 @@ import {
 
 
 function Post(props) {
+    const dispatch = useDispatch();
+
     return (
         <Box borderTop="1px solid gainsboro">
             <Flex flexDirection={{ base: "column", md: "row" }} alignItems={{ base: "center", md: "" }} minHeight="350px" paddingTop="15px">
@@ -65,6 +71,7 @@ function Post(props) {
                 <Flex width="60%" maxWidth="250px" justifyContent="space-between" padding="1rem 2rem" borderTopRadius="0.6rem" bgColor="#F7F7F7">
                     <MyIconButton
                         icon={<FaHeart />}
+                        onClick={() => dispatch(sendLike(props.post.post_id))}
                     />
                     <Spacer />
                     <MyIconButton
@@ -80,4 +87,4 @@ function Post(props) {
     )
 }
 
-export default Post
+export default Post;

@@ -15,6 +15,7 @@ import LinkButton from './LinkButton';
 import useForm from '../hooks/useForm';
 import schema from '../validation/signupSchema';
 
+// Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/app';
 
@@ -26,6 +27,7 @@ const initialFormValues = {
 function LoginForm() {
     // HOOKS & STATE //
     const [ formValues, formErrors, isButtonDisabled, onChange ] = useForm(initialFormValues, schema);
+    
     const dispatch = useDispatch();
     const { error } = useSelector(state => state.app);
     const { push } = useHistory();

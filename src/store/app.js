@@ -47,6 +47,15 @@ const slice = createSlice({
             state.error = action.payload;
             state.fetching = false;
         },
+        sendLikeStart: (state, action) => {
+            state.fetching = true;
+        },
+        sendLikeSuccess: (state, action) => {
+            state.fetching = false;
+        },
+        sendLikeFailure: (state, action) => {
+            state.fetching = false;
+        }
     }
 })
 
@@ -112,13 +121,12 @@ export const fetchSteps = () => async dispatch => {
     }
 }
 
-// FEATURE NEEDS TO BE IMPLEMENTED ON BACKEND
 export const sendLike = (post_id) => async dispatch => {
     dispatch(sendLikeStart());
 
     try {
-        const res = await axiosWithAuth().post(`/api/posts/${post_id}/likes`, {});
-        dispatch(sendLikeSuccess());
+        const res = await axiosWithAuth().post(`/api/likes`, { post_id });
+        dispatch(sendLikeSuccess(res.data));
     } catch(err) {
         dispatch(sendLikeFailure(err.response.data.message));
     }
