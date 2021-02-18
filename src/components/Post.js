@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Redux actions
-import { sendLike } from '../store/app';
+import { sendLike, sendUnlike } from '../store/app';
 
 import MyIconButton from './MyIconButton';
 
@@ -79,6 +79,7 @@ function Post(props) {
                     <Spacer />
                     <MyIconButton
                         icon={<FaHeartBroken />}
+                        onClick={() => dispatch(sendUnlike(props.post.post_id))}
                         isDisabled={likes.map(like => like.post_id).includes(props.post.post_id) ? false : true}
                     />
                     <Spacer />

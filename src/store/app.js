@@ -78,7 +78,21 @@ const slice = createSlice({
         },
         sendLikeFailure: (state, action) => {
             state.fetching = false;
-        }
+        },
+        sendUnlikeStart: (state, action) => {
+            state.fetching = true;
+        },
+        sendUnlikeSuccess: (state, action) => {
+            state.user = {
+                ...state.user,
+                likes: state.user.likes.filter(like => like.post_id !== action.payload)
+            }
+            state.fetching = false;
+        },
+        sendUnlikeFailure: (state, action) => {
+            state.error = action.payload;
+            state.fetching = false;
+        },
     }
 })
 
@@ -100,7 +114,10 @@ const {
     fetchLikesFailure,
     sendLikeStart,
     sendLikeSuccess,
-    sendLikeFailure
+    sendLikeFailure,
+    sendUnlikeStart,
+    sendUnlikeSuccess,
+    sendUnlikeFailure
 } = slice.actions;
 
 export const login = ({ username, password }, push) => async dispatch => {
@@ -166,5 +183,16 @@ export const sendLike = (post_id) => async dispatch => {
         dispatch(sendLikeSuccess(res.data));
     } catch(err) {
         dispatch(sendLikeFailure(err.response.data.message));
+    }
+}
+
+export const sendUnlike = (post_id) => async dispatch => {
+    dispatch(sendUnlikeStart);
+
+    try {
+        await axiosWithAuth().delete('/api/likes', { post_id });
+        dispatch(sendUnlikeSuccess(post_id));
+    } catch(err) {
+        dispatch(sendUnlikeFailure(err.response.data.message));
     }
 }
