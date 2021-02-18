@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Redux actions
 import { sendLike } from '../store/app';
@@ -14,7 +14,8 @@ import {
     List,
     ListItem,
     Center,
-    Spacer
+    Spacer,
+    Button
 } from '@chakra-ui/react';
 
 import {
@@ -26,6 +27,7 @@ import {
 
 function Post(props) {
     const dispatch = useDispatch();
+    const { likes } = useSelector(state => state.app.user);
 
     return (
         <Box borderTop="1px solid gainsboro">
@@ -72,10 +74,12 @@ function Post(props) {
                     <MyIconButton
                         icon={<FaHeart />}
                         onClick={() => dispatch(sendLike(props.post.post_id))}
+                        isDisabled={likes.map(like => like.post_id).includes(props.post.post_id)}
                     />
                     <Spacer />
                     <MyIconButton
                         icon={<FaHeartBroken />}
+                        isDisabled={likes.map(like => like.post_id).includes(props.post.post_id) ? false : true}
                     />
                     <Spacer />
                     <MyIconButton

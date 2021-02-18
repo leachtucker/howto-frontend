@@ -6,7 +6,9 @@ const slice = createSlice({
     initialState: {
         posts: [],
         steps: [],
-        user: null,
+        user: {
+            likes: []
+        },
         fetching: false,
         error: ''
     },
@@ -47,10 +49,31 @@ const slice = createSlice({
             state.error = action.payload;
             state.fetching = false;
         },
+        fetchLikesStart: (state, action) => {
+            state.fetching = true;
+        },
+        fetchLikesSuccess: (state, action) => {
+            state.user = {
+                ...state.user,
+                likes: action.payload
+            }
+            state.fetching = false;
+        },
+        fetchLikesFailure: (state, action) => {
+            state.error = action.payload;
+            state.fetching = false;
+        },
         sendLikeStart: (state, action) => {
             state.fetching = true;
         },
         sendLikeSuccess: (state, action) => {
+            state.user = {
+                ...state.user,
+                likes:[
+                    ...state.user.likes,
+                    action.payload
+                ]
+            }
             state.fetching = false;
         },
         sendLikeFailure: (state, action) => {
@@ -72,6 +95,9 @@ const {
     fetchStepsStart,
     fetchStepsSuccess,
     fetchStepsFailure,
+    fetchLikesStart,
+    fetchLikesSuccess,
+    fetchLikesFailure,
     sendLikeStart,
     sendLikeSuccess,
     sendLikeFailure
@@ -95,7 +121,7 @@ export const logout = () => async dispatch => {
         localStorage.removeItem('token');
         dispatch(logoutSuccess());
     } catch (err) {
-        return console.log(err.response.message)
+        return console.log(err.response.data.message)
     }
 }
 
@@ -118,6 +144,17 @@ export const fetchSteps = () => async dispatch => {
         dispatch(fetchStepsSuccess(res.data));
     } catch(err) {
         dispatch(fetchStepsFailure(err.response.data.message));
+    }
+}
+
+export const fetchLikes = () => async dispatch => {
+    dispatch(fetchLikesStart());
+
+    try {
+        const res = await axiosWithAuth().get('/api/likes');
+        dispatch(fetchLikesSuccess(res.data));
+    } catch(err) {
+        dispatch(fetchLikesFailure(err.response.data.message));
     }
 }
 

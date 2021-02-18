@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchPosts, fetchSteps } from '../store/app';
+import { fetchPosts, fetchSteps, fetchLikes } from '../store/app';
 
 import PostList from '../components/PostList';
 import {
@@ -19,6 +19,7 @@ function Feed() {
     useEffect(() => {
         dispatch(fetchPosts());
         dispatch(fetchSteps());
+        dispatch(fetchLikes());
     }, [])
 
     return (
