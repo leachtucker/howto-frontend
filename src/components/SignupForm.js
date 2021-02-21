@@ -44,7 +44,7 @@ function SignupForm(props) {
                     status: "success",
                     duration: 9000,
                     isClosable: true,
-                })
+                });
             })
             .catch(err => {
                 if (err.response.data.message) {

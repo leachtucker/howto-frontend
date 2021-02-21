@@ -14,7 +14,7 @@ import LoginForm from '../components/LoginForm';
 function Login() {
     return (
         <Box>
-            <Center padding="16px">
+            <Center padding="16px" >
                 <Heading as="h2" fontSize="2.5rem" fontWeight="300">Login</Heading>
             </Center>
             <LoginForm />

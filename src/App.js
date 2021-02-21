@@ -32,7 +32,7 @@ import Settings from './pages/Settings';
 
 
 function App() {
-  const { user, fetching } = useSelector(state => state.app);
+  const { error, fetching } = useSelector(state => state.app);
 
   return (
     <div className="App">
@@ -42,7 +42,7 @@ function App() {
           <Heading as="h1" size="3xl" fontWeight="300" color="white">HowTo</Heading>
         </Flex>
       </Center>
-      <Box color="text.400" bgColor="white" boxShadow="lg" width="90%" maxWidth="1350px" margin="0 auto" borderRadius="7px !important" paddingBottom="10px">
+      <Box color="text.400" bgColor="white" boxShadow="lg" width="90%" maxWidth="1350px" margin="0 auto" borderRadius="7px !important">
         {fetchToken() &&
           <Nav />
         }

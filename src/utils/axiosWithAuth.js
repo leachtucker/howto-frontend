@@ -8,7 +8,7 @@ function axiosWithAuth() {
     return axios.create({
         baseURL: BASE_URL,
         headers: {
-            authorization: token,
+            Authorization: token
         }
     })
 };

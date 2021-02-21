@@ -14,8 +14,7 @@ import {
     List,
     ListItem,
     Center,
-    Spacer,
-    Button
+    Spacer
 } from '@chakra-ui/react';
 
 import {
@@ -59,7 +58,7 @@ function Post(props) {
                                     props.steps.map(step => {
                                         return (
                                             <ListItem key={step.step_id}>
-                                                <Text fontSize="lg">{step.stepNumber}. {step.stepName}</Text>
+                                                <Text fontSize="lg">{step.step_number}. {step.step_name}</Text>
                                             </ListItem>
                                         )
                                     })

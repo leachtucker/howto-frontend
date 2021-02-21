@@ -38,7 +38,7 @@ function SettingsForm() {
 
     return (
         <form onSubmit={onSubmit}>
-             <Stack spacing="12px" width="70%" minWidth="320px" margin="0 auto" borderRadius="8px" padding="1rem" marginBottom="20px">
+             <Stack spacing="12px" width="70%" minWidth="320px" margin="0 auto" borderRadius="8px">
                 <FormControl isRequired isInvalid={formErrors.email.length > 0 ? true : false}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input name="email" value={formValues.email} onChange={onChange} id="email" placeholder="Email" />

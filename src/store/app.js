@@ -69,14 +69,15 @@ const slice = createSlice({
         sendLikeSuccess: (state, action) => {
             state.user = {
                 ...state.user,
-                likes:[
+                likes: [
                     ...state.user.likes,
-                    action.payload
+                    ...action.payload
                 ]
             }
             state.fetching = false;
         },
         sendLikeFailure: (state, action) => {
+            state.error = action.payload;
             state.fetching = false;
         },
         sendUnlikeStart: (state, action) => {
@@ -93,6 +94,20 @@ const slice = createSlice({
             state.error = action.payload;
             state.fetching = false;
         },
+        sendPostStart: (state, action) => {
+            state.fetching = true;
+        },
+        sendPostSuccess: (state, action) => {
+            state.posts = [
+                ...state.posts,
+                action.payload
+            ];
+            state.fetching = false;
+        },
+        sendPostFailure: (state, action) => {
+            state.error = action.payload;
+            state.fetching = false;
+        }
     }
 })
 
@@ -117,18 +132,21 @@ const {
     sendLikeFailure,
     sendUnlikeStart,
     sendUnlikeSuccess,
-    sendUnlikeFailure
+    sendUnlikeFailure,
+    sendPostStart,
+    sendPostSuccess,
+    sendPostFailure
 } = slice.actions;
 
 export const login = ({ username, password }, push) => async dispatch => {
     dispatch(loginStart());
+
     try {
         const res = await axiosWithAuth().post('/api/auth/login', { username, password });
         localStorage.setItem('token', res.data.token);
         dispatch(loginSuccess({ username }));
         push('/');
     } catch (err) {
-        console.log(err.response)
         return dispatch(loginFailure(err.response.data.message))
     }
 }
@@ -187,12 +205,23 @@ export const sendLike = (post_id) => async dispatch => {
 }
 
 export const sendUnlike = (post_id) => async dispatch => {
-    dispatch(sendUnlikeStart);
+    dispatch(sendUnlikeStart());
 
     try {
-        await axiosWithAuth().delete('/api/likes', { post_id });
+        await axiosWithAuth().delete('/api/likes', { data: { post_id } });
         dispatch(sendUnlikeSuccess(post_id));
     } catch(err) {
         dispatch(sendUnlikeFailure(err.response.data.message));
+    }
+}
+
+export const sendPost = (post_data) => async dispatch => {
+    dispatch(sendPostStart());
+
+    try {
+        const res = await axiosWithAuth().post('/api/posts', post_data);
+        dispatch(sendPostSuccess(res.data));
+    } catch(err) {
+        dispatch(sendPostFailure(err.response.data.message));
     }
 }

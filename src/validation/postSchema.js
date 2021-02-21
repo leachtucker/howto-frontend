@@ -7,7 +7,7 @@ const schema = yup.object().shape({
     title: yup.string().required(requiredMsg),
     description: yup.string().min(20, 'Enter a description above ten characters'),
     materials: yup.string().required(requiredMsg),
-    videoURL: yup.string().test('is-empty-or-url', 'Invalid URL', value => value.length === 0 || value.match(new RegExp(urlEx)))
+    video: yup.string().test('is-empty-or-url', 'Invalid URL', value => value.length === 0 || value.match(new RegExp(urlEx)))
 })
 
 export default schema;

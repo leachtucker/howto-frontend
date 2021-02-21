@@ -11,10 +11,12 @@ import PostForm from '../components/PostForm';
 function NewPost() {
     return (
         <Box>
-            <Center padding="16px">
+            <Center padding="16px" borderBottom="1px solid gainsboro">
                 <Heading as="h2" fontSize="2.5rem" fontWeight="300">New Post</Heading>
             </Center>
-            <PostForm />
+            <Box paddingY="20px">
+                <PostForm />
+            </Box>
         </Box>
     )
 }
