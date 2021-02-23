@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const requiredMsg = "Required"
+import { requiredMsg } from './messages';
 
 const schema = yup.object().shape({
     username: yup.string().required(requiredMsg),

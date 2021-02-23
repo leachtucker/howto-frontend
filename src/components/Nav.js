@@ -37,6 +37,11 @@ function Nav() {
                     </Link>
                 </LinkButton>
                 <LinkButton flex="1" maxWidth="100px" fontSize="1.25rem">
+                    <Link to="/newstep">
+                        New Step
+                    </Link>
+                </LinkButton>
+                <LinkButton flex="1" maxWidth="100px" fontSize="1.25rem">
                 <Link to="/settings">
                     Settings
                 </Link>

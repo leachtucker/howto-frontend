@@ -1,8 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import useForm from '../hooks/useForm';
 import schema from '../validation/postSchema';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { sendPost } from '../store/app';
 
 import {

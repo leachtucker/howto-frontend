@@ -28,6 +28,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Feed from './pages/Feed';
 import NewPost from './pages/NewPost';
+import NewStep from './pages/NewStep';
 import Settings from './pages/Settings';
 
 
@@ -54,6 +55,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <PrivateRoute path="/" exact component={Feed} />
           <PrivateRoute path="/newpost" exact component={NewPost} />
+          <PrivateRoute path="/newstep" exact component={NewStep} />
           <PrivateRoute path="/settings" exact component={Settings} />
           {/* Add Settings page & (maybe) a edit post page */}
         </Switch>

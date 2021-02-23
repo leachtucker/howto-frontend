@@ -107,6 +107,20 @@ const slice = createSlice({
         sendPostFailure: (state, action) => {
             state.error = action.payload;
             state.fetching = false;
+        },
+        sendStepStart: (state, action) => {
+            state.fetching = true;
+        },
+        sendStepSuccess: (state, action) => {
+            state.steps = [
+                ...state.steps,
+                action.payload
+            ]
+            state.fetching = false;
+        },
+        sendStepFailure: (state, action) => {
+            state.erorr = action.payload;
+            state.fetching = false;
         }
     }
 })
@@ -117,25 +131,36 @@ const {
     loginStart,
     loginSuccess,
     loginFailure,
+
     logoutSuccess,
+
     fetchPostsStart,
     fetchPostsSuccess,
     fetchPostsFailure,
+
     fetchStepsStart,
     fetchStepsSuccess,
     fetchStepsFailure,
+
     fetchLikesStart,
     fetchLikesSuccess,
     fetchLikesFailure,
+
     sendLikeStart,
     sendLikeSuccess,
     sendLikeFailure,
+
     sendUnlikeStart,
     sendUnlikeSuccess,
     sendUnlikeFailure,
+
     sendPostStart,
     sendPostSuccess,
-    sendPostFailure
+    sendPostFailure,
+
+    sendStepStart,
+    sendStepSuccess,
+    sendStepFailure
 } = slice.actions;
 
 export const login = ({ username, password }, push) => async dispatch => {
@@ -223,5 +248,21 @@ export const sendPost = (post_data) => async dispatch => {
         dispatch(sendPostSuccess(res.data));
     } catch(err) {
         dispatch(sendPostFailure(err.response.data.message));
+    }
+}
+
+export const sendStep = (step_data) => async dispatch => {
+    const transformedData = {
+        step_name: step_data.stepName,
+        step_number: step_data.stepNumber,
+        post_id: step_data.postId
+    }
+    dispatch(sendStepStart());
+
+    try {
+        const res = await axiosWithAuth().post('/api/steps', transformedData);
+        dispatch(sendStepSuccess(res.data));
+    } catch(err) {
+        dispatch(sendStepFailure(err.response.data.message));
     }
 }

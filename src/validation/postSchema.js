@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
-const requiredMsg = "Required"
+import { requiredMsg } from './messages';
+
 const urlEx = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g;
 
 const schema = yup.object().shape({
