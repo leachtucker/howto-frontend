@@ -1,11 +1,15 @@
 import logo from './assets/logo.svg';
 import './App.css';
 
+// ROUTER
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
 // RTK
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+
+// UTILS
+import fetchToken from './utils/fetchTokenLocal';
 
 import {
   Box,
@@ -19,19 +23,17 @@ import {
 import Nav from './components/Nav';
 import LoadingModal from './components/LoadingModal';
 
-
 // PAGES //
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Feed from './pages/Feed';
 import NewPost from './pages/NewPost';
+import NewStep from './pages/NewStep';
 import Settings from './pages/Settings';
 
-// UTILS //
-import fetchTokenLocal from './utils/fetchTokenLocal';
 
-function App(props) {
-  const { fetching } = useSelector(state => state.user);
+function App() {
+  const { error, fetching } = useSelector(state => state.app);
 
   return (
     <div className="App">
@@ -41,8 +43,8 @@ function App(props) {
           <Heading as="h1" size="3xl" fontWeight="300" color="white">HowTo</Heading>
         </Flex>
       </Center>
-      <Box color="text.400" bgColor="white" boxShadow="lg" width="90%" maxWidth="1350px" margin="0 auto" borderRadius="7px !important" paddingBottom="10px">
-        {fetchTokenLocal() &&
+      <Box color="text.400" bgColor="white" boxShadow="lg" width="90%" maxWidth="1350px" margin="0 auto" borderRadius="7px !important">
+        {fetchToken() &&
           <Nav />
         }
         {fetching &&
@@ -53,6 +55,7 @@ function App(props) {
           <Route path="/login" exact component={Login} />
           <PrivateRoute path="/" exact component={Feed} />
           <PrivateRoute path="/newpost" exact component={NewPost} />
+          <PrivateRoute path="/newstep" exact component={NewStep} />
           <PrivateRoute path="/settings" exact component={Settings} />
           {/* Add Settings page & (maybe) a edit post page */}
         </Switch>

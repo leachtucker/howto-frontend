@@ -6,19 +6,19 @@ import {
     Heading
 } from '@chakra-ui/react';
 
-import PostForm from '../components/PostForm';
+import StepForm from '../components/StepForm';
 
-function NewPost() {
+function NewStep() {
     return (
         <Box>
             <Center padding="16px" borderBottom="1px solid gainsboro">
                 <Heading as="h2" fontSize="2.5rem" fontWeight="300">New Post</Heading>
             </Center>
             <Box paddingY="20px">
-                <PostForm />
+                <StepForm />
             </Box>
         </Box>
     )
 }
 
-export default NewPost;
+export default NewStep;

@@ -15,8 +15,9 @@ import LinkButton from './LinkButton';
 import useForm from '../hooks/useForm';
 import schema from '../validation/signupSchema';
 
+// Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../store/user';
+import { login } from '../store/app';
 
 const initialFormValues = {
     username: "",
@@ -26,8 +27,9 @@ const initialFormValues = {
 function LoginForm() {
     // HOOKS & STATE //
     const [ formValues, formErrors, isButtonDisabled, onChange ] = useForm(initialFormValues, schema);
+    
     const dispatch = useDispatch();
-    const { error } = useSelector(state => state.user);
+    const { error } = useSelector(state => state.app);
     const { push } = useHistory();
 
     // EVENT HANDLERS
@@ -44,15 +46,15 @@ function LoginForm() {
                 <FormControl isRequired isInvalid={formErrors.username.length > 0 ? true : false}>
                     <FormLabel htmlFor="username">Username</FormLabel>
                     <Input name="username" value={formValues.username} onChange={onChange} id="username" placeholder="Username" />
-                    <FormErrorMessage>{formErrors.username}</FormErrorMessage>
+                    <FormErrorMessage fontSize="md">{formErrors.username}</FormErrorMessage>
                 </FormControl>
                 <FormControl isRequired isInvalid={formErrors.password.length > 0 ? true : false}>
                     <FormLabel htmlFor="password">Password</FormLabel>
                     <Input name="password" type="password" value={formValues.password} onChange={onChange} id="password" placeholder="Password" />
-                    <FormErrorMessage>{formErrors.password}</FormErrorMessage>
+                    <FormErrorMessage fontSize="md">{formErrors.password}</FormErrorMessage>
                 </FormControl>
-                <FormControl textAlign="center" borderTop="1px solid gainsboro" isInvalid={error ? true : false}>
-                    <FormErrorMessage display="inline-block">{error}</FormErrorMessage>
+                <FormControl textAlign="center" borderTop="1px solid gainsboro" isInvalid={true}>
+                    <FormErrorMessage display="inline-block" fontSize="md">{error}</FormErrorMessage>
                 </FormControl>
                 <Center paddingY="15px">
                     <LinkButton

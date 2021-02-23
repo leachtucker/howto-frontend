@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchPosts } from '../store/app';
+import { fetchPosts, fetchSteps, fetchLikes } from '../store/app';
 
 import PostList from '../components/PostList';
 import {
@@ -13,11 +13,13 @@ import {
 
 
 function Feed() {
-    const { posts } = useSelector(state => state.app);
+    const { posts, steps } = useSelector(state => state.app);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchPosts());
+        dispatch(fetchSteps());
+        dispatch(fetchLikes());
     }, [])
 
     return (
@@ -26,7 +28,7 @@ function Feed() {
                 <Heading as="h2" fontSize="2.5rem" fontWeight="300">Posts</Heading>
             </Center>
             <Stack borderBottom="1px solid gainsboro" spacing="0">
-                <PostList posts={posts} />
+                <PostList posts={posts} steps={steps} />
             </Stack>
         </Box>
     )
