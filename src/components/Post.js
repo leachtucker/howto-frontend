@@ -30,6 +30,14 @@ function Post(props) {
 
     return (
         <Box borderTop="1px solid gainsboro">
+            <Box float="left" width="50px" height="50px" background="#F7F7F7" borderBottomRightRadius="5px" >
+                <Center fontSize="mg">
+                    POST
+                </Center>
+                <Center fontWeight="bold">
+                    {props.post.post_id}
+                </Center>
+            </Box>
             <Flex flexDirection={{ base: "column", md: "row" }} alignItems={{ base: "center", md: "" }} minHeight="350px" paddingTop="15px">
                 <Box width={{ base: "100%", md: "50%"}} marginBottom={{ base: "20px", md: "" }} display="inline-block">
                     <Flex flexDirection="column" alignItems="center">

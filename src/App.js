@@ -33,7 +33,7 @@ import Settings from './pages/Settings';
 
 
 function App() {
-  const { error, fetching } = useSelector(state => state.app);
+  const { fetching } = useSelector(state => state.app);
 
   return (
     <div className="App">
@@ -56,8 +56,7 @@ function App() {
           <PrivateRoute path="/" exact component={Feed} />
           <PrivateRoute path="/newpost" exact component={NewPost} />
           <PrivateRoute path="/newstep" exact component={NewStep} />
-          <PrivateRoute path="/settings" exact component={Settings} />
-          {/* Add Settings page & (maybe) a edit post page */}
+          {/* <PrivateRoute path="/settings" exact component={Settings} /> */}
         </Switch>
       </Box>
       <Center color="white" height="100px">

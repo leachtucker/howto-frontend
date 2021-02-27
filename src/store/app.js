@@ -251,7 +251,7 @@ export const sendPost = (post_data) => async dispatch => {
     }
 }
 
-export const sendStep = (step_data) => async dispatch => {
+export const sendStep = (step_data, toast) => async dispatch => {
     const transformedData = {
         step_name: step_data.stepName,
         step_number: step_data.stepNumber,
@@ -262,6 +262,13 @@ export const sendStep = (step_data) => async dispatch => {
     try {
         const res = await axiosWithAuth().post('/api/steps', transformedData);
         dispatch(sendStepSuccess(res.data));
+        toast({
+            title: "Step created.",
+            description: "We've a new step for that post. Go check it out",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+        });
     } catch(err) {
         dispatch(sendStepFailure(err.response.data.message));
     }

@@ -15,7 +15,8 @@ import {
     Input,
     FormControl,
     FormLabel,
-    FormErrorMessage
+    FormErrorMessage,
+    useToast
 } from '@chakra-ui/react';
 
 import LinkButton from './LinkButton';
@@ -33,12 +34,13 @@ function StepForm() {
     const [ formValues, formErrors, isButtonDisabled, onChange ] = useForm(initialFormValues, schema);
     const dispatch = useDispatch();
     const { error } = useSelector(state => state.app);
+    const toast = useToast();
 
     // EVENT HANDLERS //
     function onSubmit(e) {
         e.preventDefault();
         // CALL API to submit data
-        dispatch(sendStep({ ...formValues }));
+        dispatch(sendStep({ ...formValues }, toast));
     }
 
     return (
