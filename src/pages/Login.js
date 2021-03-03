@@ -18,7 +18,7 @@ function Login() {
                 <Heading as="h2" fontSize="2.5rem" fontWeight="300">Login</Heading>
             </Center>
             <LoginForm />
-            <Center>
+            <Center paddingY="20px">
                 <LinkButton border="1px solid gainsboro" fontSize="1.2rem">
                     <Link to="/register">
                         Register

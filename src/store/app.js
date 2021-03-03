@@ -172,6 +172,10 @@ export const login = ({ username, password }, push) => async dispatch => {
         dispatch(loginSuccess({ username }));
         push('/');
     } catch (err) {
+        if (!err) {
+            dispatch(loginFailure("There has been an error"))
+        }
+
         return dispatch(loginFailure(err.response.data.message))
     }
 }
@@ -181,6 +185,10 @@ export const logout = () => async dispatch => {
         localStorage.removeItem('token');
         dispatch(logoutSuccess());
     } catch (err) {
+        if (!err) {
+            dispatch(loginFailure("There has been an error"))
+        }
+
         return console.log(err.response.data.message)
     }
 }
@@ -192,6 +200,10 @@ export const fetchPosts = () => async dispatch => {
         const res = await axiosWithAuth().get('/api/posts');
         dispatch(fetchPostsSuccess(res.data))
     } catch(err) {
+        if (!err) {
+            dispatch(loginFailure("There has been an error"))
+        }
+
         dispatch(fetchPostsFailure(err.response.data.message));
     }
 }
@@ -203,6 +215,10 @@ export const fetchSteps = () => async dispatch => {
         const res = await axiosWithAuth().get('/api/steps');
         dispatch(fetchStepsSuccess(res.data));
     } catch(err) {
+        if (!err) {
+            dispatch(loginFailure("There has been an error"))
+        }
+
         dispatch(fetchStepsFailure(err.response.data.message));
     }
 }
@@ -214,6 +230,10 @@ export const fetchLikes = () => async dispatch => {
         const res = await axiosWithAuth().get('/api/likes');
         dispatch(fetchLikesSuccess(res.data));
     } catch(err) {
+        if (!err) {
+            dispatch(loginFailure("There has been an error"))
+        }
+
         dispatch(fetchLikesFailure(err.response.data.message));
     }
 }
@@ -225,6 +245,10 @@ export const sendLike = (post_id) => async dispatch => {
         const res = await axiosWithAuth().post(`/api/likes`, { post_id });
         dispatch(sendLikeSuccess(res.data));
     } catch(err) {
+        if (!err) {
+            dispatch(loginFailure("There has been an error"))
+        }
+
         dispatch(sendLikeFailure(err.response.data.message));
     }
 }
@@ -236,6 +260,10 @@ export const sendUnlike = (post_id) => async dispatch => {
         await axiosWithAuth().delete('/api/likes', { data: { post_id } });
         dispatch(sendUnlikeSuccess(post_id));
     } catch(err) {
+        if (!err) {
+            dispatch(loginFailure("There has been an error"))
+        }
+
         dispatch(sendUnlikeFailure(err.response.data.message));
     }
 }
@@ -247,6 +275,10 @@ export const sendPost = (post_data) => async dispatch => {
         const res = await axiosWithAuth().post('/api/posts', post_data);
         dispatch(sendPostSuccess(res.data));
     } catch(err) {
+        if (!err) {
+            dispatch(loginFailure("There has been an error"))
+        }
+
         dispatch(sendPostFailure(err.response.data.message));
     }
 }
@@ -270,6 +302,10 @@ export const sendStep = (step_data, toast) => async dispatch => {
             isClosable: true,
         });
     } catch(err) {
+        if (!err) {
+            dispatch(loginFailure("There has been an error"))
+        }
+
         dispatch(sendStepFailure(err.response.data.message));
     }
 }

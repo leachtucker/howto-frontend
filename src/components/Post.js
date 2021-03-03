@@ -1,10 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 // Redux actions
 import { sendLike, sendUnlike } from '../store/app';
-
-import MyIconButton from './MyIconButton';
 
 import {
     Box,
@@ -23,11 +20,9 @@ import {
     FaShare
 } from 'react-icons/fa';
 
+import MyIconButton from './MyIconButton';
 
 function Post(props) {
-    const dispatch = useDispatch();
-    const { likes } = useSelector(state => state.app.user);
-
     return (
         <Box borderTop="1px solid gainsboro">
             <Box float="left" width="50px" height="50px" background="#F7F7F7" borderBottomRightRadius="5px" >
@@ -80,14 +75,14 @@ function Post(props) {
                 <Flex width="60%" maxWidth="250px" justifyContent="space-between" padding="1rem 2rem" borderTopRadius="0.6rem" bgColor="#F7F7F7">
                     <MyIconButton
                         icon={<FaHeart />}
-                        onClick={() => dispatch(sendLike(props.post.post_id))}
-                        isDisabled={likes.map(like => like.post_id).includes(props.post.post_id)}
+                        onClick={() => props.dispatch(sendLike(props.post.post_id))}
+                        isDisabled={props.likes.map(like => like.post_id).includes(props.post.post_id)}
                     />
                     <Spacer />
                     <MyIconButton
                         icon={<FaHeartBroken />}
-                        onClick={() => dispatch(sendUnlike(props.post.post_id))}
-                        isDisabled={likes.map(like => like.post_id).includes(props.post.post_id) ? false : true}
+                        onClick={() => props.dispatch(sendUnlike(props.post.post_id))}
+                        isDisabled={props.likes.map(like => like.post_id).includes(props.post.post_id) ? false : true}
                     />
                     <Spacer />
                     <MyIconButton
