@@ -8,6 +8,11 @@ import {
 
 import LinkButton from './LinkButton';
 
+// UTILS
+import fetchToken from '../utils/fetchTokenLocal';
+import verifyTokenExpiration from '../utils/verifyTokenExpiration';
+
+
 import { useDispatch } from 'react-redux';
 import { logout } from '../store/app';
 
@@ -15,12 +20,18 @@ function Nav() {
     // HOOKS & STATE
     const history = useHistory();
     const dispatch = useDispatch();
+    const token = fetchToken();
 
     // EVENT HANDLERS
     function onLogout() {
         dispatch(logout());
         history.push('/login');
         history.go();
+    }
+
+    // Log user out if the token has expired
+    if (verifyTokenExpiration(token) == false) {
+        onLogout();
     }
 
     return (

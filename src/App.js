@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 
 // UTILS
 import fetchToken from './utils/fetchTokenLocal';
+import verifyTokenExpiration from './utils/verifyTokenExpiration';
 
 import {
   Box,
@@ -30,7 +31,6 @@ import Feed from './pages/Feed';
 import NewPost from './pages/NewPost';
 import NewStep from './pages/NewStep';
 import Settings from './pages/Settings';
-
 
 function App() {
   const { fetching } = useSelector(state => state.app);
